@@ -2,7 +2,8 @@
 
 import { auth } from 'app/auth';
 import { type Session } from 'next-auth';
-import { sql } from './postgres';
+// import { sql } from './postgres';
+import { sql } from '@vercel/postgres';
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
 
 export async function increment(slug: string) {
