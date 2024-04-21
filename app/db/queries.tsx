@@ -34,7 +34,9 @@ export async function getBlogViews() {
   return views.rows.reduce((acc, curr) => acc + Number(curr.count), 0);
 }
 
-export async function getViewsCount(): Promise<QueryResultRow[]> {
+export type ViewT = { slug: string; count: number; };
+
+export async function getViewsCount(): Promise<ViewT[]> {
   if (!process.env.POSTGRES_URL) {
     return [];
   }
@@ -42,7 +44,7 @@ export async function getViewsCount(): Promise<QueryResultRow[]> {
   noStore();
   const query = await sql`SELECT slug, count FROM views`
 
-  return query.rows
+  return query.rows as ViewT[]
 }
 
 export const getLeeYouTubeSubs = cache(
@@ -83,10 +85,12 @@ export async function getGuestbookEntries() {
   }
 
   noStore();
-  return sql`
+  const query = await sql`
     SELECT id, body, created_by, updated_at
     FROM guestbook
     ORDER BY created_at DESC
     LIMIT 100
   `;
+
+  return query.rows;
 }
