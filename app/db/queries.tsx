@@ -1,7 +1,7 @@
 'use server';
 
 import { auth, youtube } from '@googleapis/youtube';
-import { sql } from './postgres';
+import { sql, QueryResultRow } from '@vercel/postgres';
 import {
   unstable_cache as cache,
   unstable_noStore as noStore,
@@ -31,21 +31,20 @@ export async function getBlogViews() {
     FROM views
   `;
 
-  return views.reduce((acc, curr) => acc + Number(curr.count), 0);
+  return views.rows.reduce((acc, curr) => acc + Number(curr.count), 0);
 }
 
-export async function getViewsCount(): Promise<
-  { slug: string; count: number }[]
-> {
+export type ViewT = { slug: string; count: number; };
+
+export async function getViewsCount(): Promise<ViewT[]> {
   if (!process.env.POSTGRES_URL) {
     return [];
   }
 
   noStore();
-  return sql`
-    SELECT slug, count
-    FROM views
-  `;
+  const query = await sql`SELECT slug, count FROM views`
+
+  return query.rows as ViewT[]
 }
 
 export const getLeeYouTubeSubs = cache(
@@ -86,10 +85,12 @@ export async function getGuestbookEntries() {
   }
 
   noStore();
-  return sql`
+  const query = await sql`
     SELECT id, body, created_by, updated_at
     FROM guestbook
     ORDER BY created_at DESC
     LIMIT 100
   `;
+
+  return query.rows;
 }

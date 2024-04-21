@@ -1,8 +1,9 @@
-import postgres from 'postgres';
+// import postgres from 'postgres';
 
-export const sql = postgres(process.env.POSTGRES_URL, {
-  ssl: 'allow',
-});
+// export const sql = postgres(process.env.POSTGRES_URL, {
+//   ssl: 'allow',
+// });
+import { sql } from '@vercel/postgres';
 
 const nextConfig = {
   experimental: {
@@ -23,8 +24,8 @@ const nextConfig = {
       SELECT source, destination, permanent
       FROM redirects;
     `;
-
-    return redirects.map(({ source, destination, permanent }) => ({
+    
+    return redirects.rows.map(({ source, destination, permanent }) => ({
       source,
       destination,
       permanent: !!permanent,
