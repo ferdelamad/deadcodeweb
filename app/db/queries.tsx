@@ -1,7 +1,7 @@
 'use server';
 
 import { auth, youtube } from '@googleapis/youtube';
-import { sql, QueryResultRow } from '@vercel/postgres';
+import { sql } from '@vercel/postgres';
 import {
   unstable_cache as cache,
   unstable_noStore as noStore,
