@@ -23,4 +23,5 @@ export default {
     hoverOnlyWhenSupported: true,
   },
   plugins: [typography],
+  daskMode: 'class'
 } satisfies Config;

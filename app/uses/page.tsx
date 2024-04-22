@@ -1,3 +1,4 @@
+// TODO: Edit and add this in the future
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
