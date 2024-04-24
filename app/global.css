@@ -91,6 +91,12 @@ h4 {
   @apply font-medium tracking-tighter !important;
 }
 
+.prose {
+  h2 {
+    color: red !important;
+  } 
+}
+
 .prose strong {
   @apply font-medium;
 }
