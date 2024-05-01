@@ -6,6 +6,7 @@ import {
   unstable_cache as cache,
   unstable_noStore as noStore,
 } from 'next/cache';
+import prisma from 'db';
 
 let googleAuth = new auth.GoogleAuth({
   credentials: {
@@ -93,4 +94,30 @@ export async function getGuestbookEntries() {
   `;
 
   return query.rows;
+}
+
+export async function getPosts() {
+  if (!process.env.POSTGRES_URL) {
+    return [];
+  }
+
+  noStore();
+
+  const posts = await prisma.post.findMany();
+  return posts;
+}
+
+export async function getPost(slug: string) {
+  if (!process.env.POSTGRES_URL) {
+    return undefined;
+  }
+
+  noStore();
+
+  const post = await prisma.post.findUnique({
+    where: {
+      slug
+    }
+  })
+  return post;
 }
