@@ -5,7 +5,8 @@
     "build": "npm run setup && next build",
     "build-only": "next build",
     "start": "next start",
-    "setup": "node ./setup.mjs"
+    "setup": "node ./setup.mjs",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.12.0",
