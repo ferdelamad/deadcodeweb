@@ -11,8 +11,8 @@ Other times you have the luxury to pay some tech debt and have the opportunity t
 
 In any case, you can collect coverage from a single test file using the following command:
 
-```jsx
-$ jest --coverage --collectCoverageFrom=<path-to-file(s)-to-collect-coverge>
+```bash
+jest <path-to-test-file> --coverage --collectCoverageFrom=<path-to-file(s)-to-collect-coverge>
 ```
 
 There is a catch, if you happen to use a **test script** from your package.json, for example:
@@ -25,14 +25,14 @@ There will be a difference on how you run this script between **npm** and **yarn
 
 **Npm**
 
-```jsx
-$ npm test <path-to-test-file> -- --coverage --collectCoverageFrom=<path-to-file(s)-to-collect-coverge>
+```bash
+npm test <path-to-test-file> -- --coverage --collectCoverageFrom=<path-to-file(s)-to-collect-coverge>
 ```
 
 **Yarn**
 
-```jsx
-$ yarn test <path-to-test-file> --coverage --collectCoverageFrom=<path-to-file(s)-to-collect-coverge>
+```bash
+yarn test <path-to-test-file> --coverage --collectCoverageFrom=<path-to-file(s)-to-collect-coverge>
 ```
 
 The main difference is that npm needs the extra `--` before `--coverage`. This is a requirement for npm to include the Jest CLI options.
@@ -41,8 +41,8 @@ Additionally file paths should always be relative to the project root folder.
 
 Example:
 
-```jsx
-$ npm test src/app/__tests__/page.test.tsx -- --coverage --collectCoverageFrom=src/app/page.tsx
+```bash
+npm test src/app/__tests__/page.test.tsx -- --coverage --collectCoverageFrom=src/app/page.tsx
 ```
 
 The above command will print a coverage summary only for the `page.tsx` component.
