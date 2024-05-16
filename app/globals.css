@@ -67,80 +67,80 @@
 
   .prose .anchor {
     @apply absolute invisible no-underline;
-  
+
     margin-left: -1em;
     padding-right: 0.5em;
     width: 80%;
     max-width: 700px;
     cursor: pointer;
   }
-  
+
   .anchor:hover {
     @apply visible;
   }
-  
+
   .prose a {
     @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
   }
-  
+
   .prose .anchor:after {
     @apply text-neutral-300 dark:text-neutral-700;
     content: '#';
   }
-  
+
   .prose *:hover > .anchor {
     @apply visible;
   }
-  
+
   .prose pre {
     @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900;
   }
-  
+
   .prose code {
     @apply px-1 py-0.5 rounded-lg;
   }
-  
+
   .prose pre code {
     @apply p-0;
     border: initial;
     line-height: 1.5;
   }
-  
+
   .prose code span {
     @apply font-medium;
   }
-  
+
   .prose img {
     /* Don't apply styles to next/image */
     @apply m-0;
   }
-  
+
   .prose h2,
   h3,
   h4 {
     @apply font-medium tracking-tighter !important;
     font-size: 1.5em;
   }
-  
+
   .prose strong {
     @apply font-medium;
   }
-  
+
   .prose > :first-child {
     /* Override removing top margin, causing layout shift */
     margin-top: 1.25em !important;
     margin-bottom: 1.25em !important;
   }
-  
+
   pre::-webkit-scrollbar {
     display: none;
   }
-  
+
   pre {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
-  
+
   /* Remove Safari input shadow on mobile */
   input[type='text'],
   input[type='email'] {
@@ -148,23 +148,23 @@
     -moz-appearance: none;
     appearance: none;
   }
-  
+
   .prose .tweet a {
     text-decoration: inherit;
     font-weight: 500;
   }
-  
+
   table {
     display: block;
     max-width: fit-content;
     overflow-x: auto;
     white-space: nowrap;
   }
-  
+
   .prose .callout > p {
     margin: 0 !important;
   }
-  
+
   .title {
     text-wrap: balance;
   }
@@ -178,12 +178,30 @@
   .prose pre {
     overflow-x: auto;
     font-weight: 400;
-    font-size: .875em;
+    font-size: 0.875em;
     line-height: 1.7142857;
     margin-top: 1.7142857em;
     margin-bottom: 1.7142857em;
-    border-radius: .375rem;
-    padding: .8571429em 1.1428571em;
+    border-radius: 0.375rem;
+    padding: 0.8571429em 1.1428571em;
+    background: #1e293b !important;
+    color: #fafafa !important;
+  }
+  .dark .prose pre {
+    background: #0f172a !important;
+  }
+  /* style `content` like notion */
+  code:not(pre > code) {
+    background: #eae7e7;
+    color: orangered;
+    font-size: 14px;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .dark code:not(pre > code) {
+    background: #1f2937;
+    color: orangered;
   }
   /* end fer */
 }
